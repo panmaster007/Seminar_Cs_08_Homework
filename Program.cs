@@ -156,6 +156,25 @@ int[,] MultMatr(int[,] matA, int[,] matB, int[,] matC)
 	return matC;
 }
 
+int[] FillingArrayRandomUnique(int[] array)
+{
+	for (int i = 0; i < array.Length; i++)
+	{
+		array[i] = new Random().Next(10, 100);
+	}
+	return array;
+}
+
+void PrintArrayToStringInt(int[] array)
+{
+	string result = string.Empty; // "";
+
+	for (int i = 0; i < array.GetLength(0); i++)
+	{
+		System.Console.Write($"{array[i]} ");
+	}
+}
+
 void Task_54()
 {
 	// Здесь вызываем необходимые методы для выполнения 54-й задачи
@@ -197,6 +216,12 @@ void Task_58()
 void Task_60()
 {
 	// Здесь вызываем необходимые методы для выполнения 60-й задачи
+	int[] tempArray = new int[8];
+	int[,,] array = new int[2, 2, 2];
+	tempArray = FillingArrayRandomUnique(tempArray);
+	System.Console.WriteLine();
+	PrintArrayToStringInt(tempArray);
+	System.Console.WriteLine();
 }
 
 void Task_62()
