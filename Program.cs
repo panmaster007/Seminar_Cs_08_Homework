@@ -136,7 +136,24 @@ void FindMinSum(int[,] array)
 		}
 	}
 
-Console.WriteLine($"В {index + 1} строке минимальная сумма");
+	Console.WriteLine($"В {index + 1} строке минимальная сумма");
+}
+
+int[,] MultMatr(int[,] matA, int[,] matB, int[,] matC)
+{
+	for (int i = 0; i < matC.GetLength(0); i++)
+	{
+		for (int j = 0; j < matC.GetLength(1); j++)
+		{
+			int sum = 0;
+			for (int k = 0; k < matA.GetLength(0); k++)
+			{
+				sum = sum + matA[i, k] * matB[k, j];
+			}
+			matC[i, j] = sum;
+		}
+	}
+	return matC;
 }
 
 void Task_54()
@@ -163,6 +180,18 @@ void Task_56()
 void Task_58()
 {
 	// Здесь вызываем необходимые методы для выполнения 58-й задачи
+	int[,] matA = new int[2, 2];
+	int[,] matB = new int[2, 2];
+	int[,] matC = new int[2, 2];
+	FillingTwoDimensionArrayInt(matA);
+	FillingTwoDimensionArrayInt(matB);
+	matC = MultMatr(matA, matB, matC);
+	Console.WriteLine($"Матрица А: ");
+	PrintTwoDimensionArrayToStringInt(matA);
+	Console.WriteLine($"Матрица Б: ");
+	PrintTwoDimensionArrayToStringInt(matB);
+	Console.WriteLine($"Матрица С: ");
+	PrintTwoDimensionArrayToStringInt(matC);
 }
 
 void Task_60()
