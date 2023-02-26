@@ -1,5 +1,4 @@
 ﻿﻿// Начало кода
-
 void TaskMenu()
 {
 	bool exitOut = true;
@@ -156,77 +155,125 @@ int[,] MultMatr(int[,] matA, int[,] matB, int[,] matC)
 	return matC;
 }
 
-int[] FillingArrayRandomUnique(int[] array)
+void FillingArrayRandomUnique(int[] array)
 {
-	for (int i = 0; i < array.Length; i++)
-	{
-		array[i] = new Random().Next(10, 100);
-	}
-	return array;
-}
-
-void PrintArrayToStringInt(int[] array)
-{
-	string result = string.Empty; // "";
+	Random random = new Random();
 
 	for (int i = 0; i < array.GetLength(0); i++)
 	{
-		System.Console.Write($"{array[i]} ");
+		bool isUnic = false;
+
+		while (!isUnic)
+		{
+			array[i] = random.Next(10, 100);
+
+			if (CheckUniques(array, i))
+			{
+				isUnic = true;
+			}
+		}
 	}
 }
 
-void Task_54()
+bool CheckUniques(int[] array, int i)
 {
-	// Здесь вызываем необходимые методы для выполнения 54-й задачи
-	int[,] array = new int[3, 4];
-	FillingTwoDimensionArrayInt(array);
-	PrintTwoDimensionArrayToStringInt(array);
-	ResortingRowArrayElements(array);
-	System.Console.WriteLine();
-	PrintTwoDimensionArrayToStringInt(array);
+	for (int j = 0; j < i; j++)
+	{
+		if (i == 0)
+		{
+			return true;
+		}
+		else if (array[i] == array[j])
+		{
+			return false;
+		}
+	}
+
+	return true;
 }
 
-void Task_56()
+void OneToThreeDimensionArray(int[,,] array, int[] tempArray)
 {
-	// Здесь вызываем необходимые методы для выполнения 56-й задачи
-	int[,] array = new int[7, 4];
-	FillingTwoDimensionArrayInt(array);
-	PrintTwoDimensionArrayToStringInt(array);
-	System.Console.WriteLine();
-	FindMinSum(array);
+	int l = 0;
+
+	for (int i = 0; i < array.GetLength(0); i++)
+	{
+		for (int j = 0; j < array.GetLength(1); j++)
+		{
+			for (int k = 0; k < array.GetLength(2); k++)
+			{
+				array[i, j, k] = tempArray[l++];
+			}
+		}
+	}
 }
 
-void Task_58()
+void PrintThreeDimensionArrayToInt(int[,,] array)
 {
-	// Здесь вызываем необходимые методы для выполнения 58-й задачи
-	int[,] matA = new int[2, 2];
-	int[,] matB = new int[2, 2];
-	int[,] matC = new int[2, 2];
-	FillingTwoDimensionArrayInt(matA);
-	FillingTwoDimensionArrayInt(matB);
-	matC = MultMatr(matA, matB, matC);
-	Console.WriteLine($"Матрица А: ");
-	PrintTwoDimensionArrayToStringInt(matA);
-	Console.WriteLine($"Матрица Б: ");
-	PrintTwoDimensionArrayToStringInt(matB);
-	Console.WriteLine($"Матрица С: ");
-	PrintTwoDimensionArrayToStringInt(matC);
+	for (int i = 0; i < array.GetLength(0); i++)
+	{
+		for (int j = 0; j < array.GetLength(1); j++)
+		{
+			for (int k = 0; k < array.GetLength(2); k++)
+			{
+				Console.WriteLine($"{array[i, j, k]}({i}, {j}, {k})");
+			}
+		}
+	}
 }
 
-void Task_60()
-{
-	// Здесь вызываем необходимые методы для выполнения 60-й задачи
-	int[] tempArray = new int[8];
-	int[,,] array = new int[2, 2, 2];
-	tempArray = FillingArrayRandomUnique(tempArray);
-	System.Console.WriteLine();
-	PrintArrayToStringInt(tempArray);
-	System.Console.WriteLine();
-}
+	void Task_54()
+	{
+		// Здесь вызываем необходимые методы для выполнения 54-й задачи
+		int[,] array = new int[3, 4];
+		FillingTwoDimensionArrayInt(array);
+		PrintTwoDimensionArrayToStringInt(array);
+		ResortingRowArrayElements(array);
+		System.Console.WriteLine();
+		PrintTwoDimensionArrayToStringInt(array);
+	}
 
-void Task_62()
-{
-	// Здесь вызываем необходимые методы для выполнения 62-й задачи
-}
+	void Task_56()
+	{
+		// Здесь вызываем необходимые методы для выполнения 56-й задачи
+		int[,] array = new int[7, 4];
+		FillingTwoDimensionArrayInt(array);
+		PrintTwoDimensionArrayToStringInt(array);
+		System.Console.WriteLine();
+		FindMinSum(array);
+	}
 
-TaskMenu();
+	void Task_58()
+	{
+		// Здесь вызываем необходимые методы для выполнения 58-й задачи
+		int[,] matA = new int[2, 2];
+		int[,] matB = new int[2, 2];
+		int[,] matC = new int[2, 2];
+		FillingTwoDimensionArrayInt(matA);
+		FillingTwoDimensionArrayInt(matB);
+		matC = MultMatr(matA, matB, matC);
+		Console.WriteLine($"Матрица А: ");
+		PrintTwoDimensionArrayToStringInt(matA);
+		Console.WriteLine($"Матрица Б: ");
+		PrintTwoDimensionArrayToStringInt(matB);
+		Console.WriteLine($"Матрица С: ");
+		PrintTwoDimensionArrayToStringInt(matC);
+	}
+
+	void Task_60()
+	{
+		// Здесь вызываем необходимые методы для выполнения 60-й задачи
+		int[] tempArray = new int[8];
+		int[,,] array = new int[2, 2, 2];
+		FillingArrayRandomUnique(tempArray);
+		System.Console.WriteLine();
+		OneToThreeDimensionArray(array, tempArray);
+		PrintThreeDimensionArrayToInt(array);
+	}
+
+	void Task_62()
+	{
+		// Здесь вызываем необходимые методы для выполнения 62-й задачи
+	}
+
+	TaskMenu();
