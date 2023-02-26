@@ -5,7 +5,7 @@ void TaskMenu()
 
 	while (exitOut == true)
 	{
-		Console.WriteLine("Введите номер задачи(54, 56, 58, 60, 62 либо q/Q для выхода):");
+		Console.WriteLine("Введите номер задачи(54, 56, 58, 60 либо q/Q для выхода):");
 		string selectTask = "";
 		selectTask = Console.ReadLine();
 
@@ -36,13 +36,6 @@ void TaskMenu()
 				{
 					Console.Clear();
 					Task_60();
-					break;
-				}
-
-			case "62":
-				{
-					Console.Clear();
-					Task_62();
 					break;
 				}
 
@@ -269,11 +262,6 @@ void PrintThreeDimensionArrayToInt(int[,,] array)
 		System.Console.WriteLine();
 		OneToThreeDimensionArray(array, tempArray);
 		PrintThreeDimensionArrayToInt(array);
-	}
-
-	void Task_62()
-	{
-		// Здесь вызываем необходимые методы для выполнения 62-й задачи
 	}
 
 	TaskMenu();
